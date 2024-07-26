@@ -10,7 +10,7 @@ save their bought tickets to the database.
 - Write "java -project_name"
 - In the IDE you need to connect to Postgresql database
 - Then you need to create a database named "ticket_ride_db"
-- Then create a table "ticket" in the pg admin console
+- Then create a table "ticket" in the pgAdmin 4 console
 - To send requests to "//localhost:8080/" use Postman
 ### Endpoints
 1. //localhost:8080/ticket/price -> to get the price of a ticket

@@ -15,10 +15,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable);
+        http.cors(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(request -> {
             request.requestMatchers("/ticket/price").permitAll();
             request.anyRequest().authenticated();
@@ -26,7 +26,6 @@ public class SecurityConfiguration {
                 .formLogin(Customizer.withDefaults());
         return http.build();
     }
-
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails userDetails = User.withDefaultPasswordEncoder()
@@ -36,5 +35,4 @@ public class SecurityConfiguration {
                 .build();
         return new InMemoryUserDetailsManager(userDetails);
     }
-
 }
