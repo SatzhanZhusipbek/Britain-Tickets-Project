@@ -1,13 +1,11 @@
 package project.ticket_to_ride.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "ticket")
 public class Ticket {
@@ -23,7 +21,7 @@ public class Ticket {
     @Column(name = "traveller_amount")
     private int travellerAmount;
     @Column(name = "name")
-    private String name;
+    private String traveller;
     @Column(name = "segments")
     private int segments;
     @Column(name = "price")
@@ -32,11 +30,11 @@ public class Ticket {
     private String currency;
 
     public Ticket(String departure, String arrival, int travellerAmount,
-                  String name, int segments, int price, String currency) {
+                  String traveller, int segments, int price, String currency) {
         this.departure = departure;
         this.arrival = arrival;
         this.travellerAmount = travellerAmount;
-        this.name = name;
+        this.traveller = traveller;
         this.segments = segments;
         this.price = price;
         this.currency = currency;

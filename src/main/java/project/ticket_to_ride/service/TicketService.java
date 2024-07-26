@@ -1,5 +1,7 @@
 package project.ticket_to_ride.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.ticket_to_ride.data.*;
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Service
 public class TicketService {
+
+    Logger logger = LoggerFactory.getLogger(TicketService.class);
 
     private static List<TicketInfo> possibleTickets;
 
@@ -31,6 +35,7 @@ public class TicketService {
         }
         return ticketDAO;
 
+
     }
     public ParentResultDAO saveTicket(Ticket ticket) {
         ParentResultDAO result = null;
@@ -44,6 +49,14 @@ public class TicketService {
             ticket.getCurrency());
             result = resultDAO;
             ticketRepository.save(ticket);
+        }
+        if (result instanceof ResultDAO) {
+            logger.info(((ResultDAO) result).getResult()+" , a traveller can buy the ticket.");
+        }
+        else {
+            if (result != null) {
+                logger.info(((NoResultDAO) result).getResult()+ " , a traveller can't buy the ticket.");
+            }
         }
         return result;
     }
